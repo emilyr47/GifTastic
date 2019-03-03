@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>GIPHTastic</title>
+</head>
+
+<body>
+  <button id="pizza-button">Pizza</button>
+  <button id="burger-button">Hamburger</button>
+  <button id="fries-button">Fries</button>
+
+
+  <div id="images">
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    $("#pizza-button").on("click", function() { // event listener
+
+      
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=pizza"; // Storing giphy API URL
+
+
+      
+      $.ajax({ // AJAX Get request
+        url: queryURL,
+        method: "GET"
+      })
+
+        .then(function(response) {
+
+          var imageUrl = response.data.image_original_url; // after loaded
+
+      
+          var pizzaImage = $("<img>"); // storing image tag
+
+          pizzaImage.attr("src", imageUrl); //setting up the pizza images with their URL
+          pizzaImage.attr("alt", "pizza image");
+
+          $("#images").prepend(pizzaImage); //prepending the gifs
+        });
+    });
+    $("#burger-button").on("click", function() {
+
+var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=burger";
+
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
+
+  .then(function(response) {
+
+    var imageUrl = response.data.image_original_url;
+
+    var burgerImage = $("<img>");
+
+    burgerImage.attr("src", imageUrl);
+    burgerImage.attr("alt", "burger image");
+
+    $("#images").prepend(burgerImage);
+  });
+  $("#fries-button").on("click", function() {
+
+var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=fries";
+
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
+
+  .then(function(response) {
+
+    var imageUrl = response.data.image_original_url;
+
+    var friesImage = $("<img>");
+
+    friesImage.attr("src", imageUrl);
+    friesImage.attr("alt", "fries image");
+
+    $("#images").prepend(friesImage);
+  });
+  });
+});
+  </script>
+</body>
+
+</html>
+
